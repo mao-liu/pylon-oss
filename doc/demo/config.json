@@ -1,0 +1,7 @@
+{
+  "PYLON_INPUT": "folder://input/",
+  "PYLON_OUTPUT": "folder://output/",
+  "PYLON_LOOP_SLEEP_SECONDS": 5,
+  "PYLON_LOG_FORMAT": "txt",
+  "PYLON_LOG_LEVEL": "info"
+}

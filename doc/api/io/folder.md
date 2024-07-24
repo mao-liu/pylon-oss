@@ -72,8 +72,8 @@ Create these four files:
     ```
 
 Then run these commands in seperate terminal windows.
-- `TASK_CONFIG=$(cat config1.json) python component1.py`
-- `TASK_CONFIG=$(cat config2.json) python component2.py`
+- `PYLON_CONFIG=$(cat config1.json) python component1.py`
+- `PYLON_CONFIG=$(cat config2.json) python component2.py`
 
 In this example we are creating two components: a source component which feeds into a sink component. When the source component runs you should notice the folder `component2` fills up with files, this is the source component output. When the sink component is run it will slowly process each of those messages, deleting the corresponding files as it goes and printing the message body.
 

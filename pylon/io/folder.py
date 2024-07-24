@@ -40,12 +40,16 @@ def _decode(raw_message: str) -> models.messages.BaseMessage:
     message_dict = json.loads(raw_message)
     message = models.messages.BaseMessage()
     for attr in utils.getClassAttributes(models.messages.BaseMessage):
-        setattr(message, attr, message_dict[attr])
+        if attr in message_dict:
+            setattr(message, attr, message_dict[attr])
 
     if message.objectType in (
             models.messages.ObjectType.INGESTION_STEP, models.messages.ObjectType.DATA_ASSET
     ):
         message.body = interfaces.serializing.JsonSerializable.fromJSON(message.body)
+
+    if not message.ingestionId:
+        message.ingestionId = str(uuid.uuid4())
 
     return message
 
@@ -60,6 +64,7 @@ def _encode(message: models.messages.BaseMessage) -> str:
         message.body = message.body.toJSON()
 
     raw_message = json.dumps(message_dict)
+
     return raw_message
 
 
